@@ -27,6 +27,7 @@ import { generateUserManualPDF } from '../utils/pdfGenerator';
 export function AdminView() {
   const { 
     hasPermission, 
+    setCurrentView,
     questionSets, 
     createQuestionSet, 
     addQuestionToSet, 
@@ -53,6 +54,13 @@ export function AdminView() {
     showToast
   } = useApp();
 
+  const canAccessAdmin = hasPermission('admin_fields') || 
+    hasPermission('admin_dropdowns') || 
+    hasPermission('manage_locations') || 
+    hasPermission('admin_profiles') || 
+    hasPermission('admin_roles') || 
+    hasPermission('manage_system_settings');
+
   // Tab State: 'fields' | 'dropdowns' | 'locations' | 'profiles' | 'roles' | 'settings'
   const [activeTab, setActiveTab] = useState(() => {
     if (hasPermission('admin_fields')) return 'fields';
@@ -62,6 +70,26 @@ export function AdminView() {
     if (hasPermission('admin_roles')) return 'roles';
     return 'settings';
   });
+
+  if (!canAccessAdmin) {
+    return (
+      <div className="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-12 text-center max-w-md mx-auto my-12 shadow-xs">
+        <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-slate-800 text-slate-400 flex items-center justify-center mx-auto mb-4">
+          <Shield className="w-6 h-6" />
+        </div>
+        <h2 className="text-lg font-bold text-slate-900 dark:text-white">Access Restricted</h2>
+        <p className="text-xs text-slate-500 dark:text-slate-400 mt-2">
+          Your assigned role does not have administrative permissions to view this module.
+        </p>
+        <button
+          onClick={() => setCurrentView('dashboard')}
+          className="mt-6 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-semibold"
+        >
+          Return to Dashboard
+        </button>
+      </div>
+    );
+  }
 
   // TAB 1: Fields / Question Sets
   const [selectedQsId, setSelectedQsId] = useState(questionSets[0]?.id || '');

@@ -532,7 +532,7 @@ export function SentriCoreView() {
                 Master Security Incident Reports
               </h2>
               <p className="text-xs text-slate-500">
-                Supervisor-to-manager approval workflow, evidence files, and immutable synopsis records.
+                Supervisor-to-manager approval workflow, evidence files, and official synopsis records.
               </p>
             </div>
 

@@ -210,14 +210,14 @@ export function IncidentReportModal() {
         {/* Form Body */}
         <div className="p-6 overflow-y-auto space-y-5 text-xs">
           
-          {/* Top Audit-Trail Strip (Immutable fields from Section 19) */}
+          {/* Top Audit-Trail Strip */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-100 dark:border-slate-800 text-[11px]">
             <div>
-              <span className="text-slate-400 font-semibold block">Synopsis Number (Immutable)</span>
+              <span className="text-slate-400 font-semibold block">Synopsis Number</span>
               <span className="font-mono font-bold text-slate-800 dark:text-slate-200">{synopsisNumber}</span>
             </div>
             <div>
-              <span className="text-slate-400 font-semibold block">Creation Date (Auto-filled)</span>
+              <span className="text-slate-400 font-semibold block">Creation Date</span>
               <span className="font-bold text-slate-800 dark:text-slate-200">{creationDate}</span>
             </div>
             <div>
