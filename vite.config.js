@@ -7,6 +7,16 @@ export default defineConfig({
   server: {
     port: 3000,
     open: false
+  },
+  build: {
+    chunkSizeWarningLimit: 1200,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'lucide-react', 'clsx', 'tailwind-merge'],
+          pdf: ['jspdf']
+        }
+      }
+    }
   }
 })
-
